@@ -35,7 +35,7 @@
 
     else
     {
-        header('Location:http://localhost/CoruseProject/error.html');
+        header('Location:http://localhost/AdminView/error.html');
         exit(); 
     }
     
@@ -43,7 +43,7 @@
 
     if($branch_location === ' ')
     {
-        header('Location:http://localhost/CoruseProject/error.html');
+        header('Location:http://localhost/AdminView/error.html');
         exit();
     }
 

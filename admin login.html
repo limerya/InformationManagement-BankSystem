@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" 
+    rel="stylesheet">
+    <style type="text/css">
+      html
+      {
+        display: grid;
+        min-height: 100%;
+        background-color: #e2dfd9;
+      }
+
+      body
+      {
+        font-family: "Lato", sans-serif;
+        margin: auto;
+      }
+
+      .container
+      {
+          display: flex;
+          flex-direction: column; 
+          padding: 30px;
+          height: 225px;
+          border-radius: 25px; 
+          background-color: white;
+          box-shadow: 10px 10px 5px gray;
+      }
+
+      .upperdiv
+      {
+          display: flex; 
+          flex-direction: column; 
+          width: 100%;
+      }
+
+      .textlabel
+      {
+          padding-bottom: 5px; 
+          font-size: 16pt;
+      }
+
+      .inputbox
+      {
+          font-size: 12pt;
+          margin-bottom: 13px;
+          border-radius: 5px;
+          border-style: solid;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          padding-left: 10px;
+      }
+
+      .back
+      {
+        display: grid;
+        gap: 5px;
+        padding-top: 12px;
+        grid-template-columns: auto auto;
+        grid-auto-flow: row;
+      }
+
+      .action1
+      {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-auto-flow: row;
+        gap: 10px;
+
+      }
+
+      .form
+      {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .button1
+      {
+        background-color: #3f413a;
+        color: #e2dfd9;
+        font-size: 10pt;
+        border-style: none;
+        border-radius: 5px;
+        padding: 6px;
+        width: 100%;
+      }
+
+      .button2
+      {
+        background-color: #66695e;
+        color: 	white;
+        font-size: 10pt;
+        border-style: none;
+        padding: 6px;
+        border-radius: 5px;
+        width: 100%;
+      }
+
+    </style>
+</head>
+<body>
+
+<h2 style="text-align: center;">Admin Login</h2>
+<div class="container">
+    <div class="upperdiv"> 
+      <form action="actions.php" method="post" class="form">
+        <label class="textlabel" for="uname">
+            <b>Identification Number</b>
+        </label>
+        <input class="inputbox" type="text" placeholder="Enter Username" name="uname" required >
+
+        <label for="psw" class="textlabel"><b>Password</b></label>
+
+        <input class="inputbox" type="password" placeholder="Enter Password" name="psw" required>
+      </form>
+      <input type="submit" style="width: 100%;" class="button1" value = 'Login'>
+    </div>
+
+    <div class="back">
+      <!--Creating button for employee-->
+      <form action="employeelogin.php" method="POST">
+        <input type="submit" name="employeelogin" value = 'Employee Login' class="button2">
+      </form>
+    </div>
+</div>
+</body>
+</html>

@@ -41,7 +41,7 @@
     
     $branch_location = $_REQUEST['branch_location'];
 
-    if($branch_location === ' ')
+    if(trim($branch_location) === '')
     {
         header('Location:http://localhost/AdminView/error.html');
         exit();

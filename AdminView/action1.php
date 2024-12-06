@@ -49,6 +49,16 @@
 
     if(isset($_POST['insert']))
     {
+        $sqlcheck = "SELECT COUNT(1) AS checker FROM BRANCH WHERE BRANCH_CODE = '$branch_code'";
+        $checker = $mysqli -> query($sqlcheck);
+        $rowchecker = $checker -> fetch_assoc();
+
+        if($rowchecker['checker'] == 1)
+        {
+            header('Location:http://localhost/AdminView/error.html');
+            exit();
+        }
+        
         $sql =  "INSERT INTO BRANCH (BRANCH_CODE, BRANCH_LOCATION) VALUES ('$branch_code', '$branch_location')";
         if(mysqli_query($mysqli, $sql))
         {

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    
+    <style type='text/css'>
+        table, th, td {
+            border: 1px solid;
+        }
+
+        body {
+            font-family: "Lato", sans-serif;
+        }
+
+        h2 {
+            color: #333;
+            text-decoration: underline;
+        }
+
+        form {
+            margin-top: 15px;
+        }
+
+        input[type="submit"] {
+            margin: 5px;
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        input[type="text"] {
+            margin: 5px;
+            padding: 8px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Branch Table -->
+        <div>
+            <h2>Branch Table</h2>
+            <table>
+                <tr>
+                    <th>Branch Code</th>
+                    <th>Branch Location</th>
+                </tr>
+                <!-- Data rows dynamically inserted here -->
+            </table>
+            <form action="your_php_file.php" method="POST">
+                <label for="branch_code">Branch Code</label>
+                <input type="text" name="branch_code" required> <br>
+                <label for="branch_location">Branch Location</label>
+                <input type="text" name="branch_location" required> <br>
+                <input type="submit" name="insert" value="Insert">
+                <input type="submit" name="update" value="Update">
+                <input type="submit" name="delete" value="Delete">
+            </form>
+        </div>
+
+        <!-- Employee Table -->
+        <div>
+            <h2>Employee Table</h2>
+            <table>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Employee Name</th>
+                    <th>Employee Phone</th>
+                    <th>Employee Pin</th>
+                    <th>Branch Code</th>
+                </tr>
+                <!-- Data rows dynamically inserted here -->
+            </table>
+            <form action="your_php_file.php" method="POST">
+                <label for="employee_id">Employee ID</label>
+                <input type="text" name="employee_id" required> <br>
+                <label for="employee_name">Employee Name</label>
+                <input type="text" name="employee_name" required> <br>
+                <label for="employee_phone">Employee Phone</label>
+                <input type="text" name="employee_phone" required> <br>
+                <label for="employee_pin">Employee Pin</label>
+                <input type="text" name="employee_pin" required> <br>
+                <label for="branch_code">Branch Code</label>
+                <input type="text" name="branch_code" required> <br>
+                <input type="submit" name="insert" value="Insert">
+                <input type="submit" name="update" value="Update">
+                <input type="submit" name="delete" value="Delete">
+            </form>
+        </div>
+
+        <!-- Transaction Table -->
+        <div>
+            <h2>Transaction Table</h2>
+            <table>
+                <tr>
+                    <th>Transaction Number</th>
+                    <th>Transaction Type</th>
+                    <th>Transaction Amount</th>
+                    <th>Employee ID</th>
+                    <th>Client ID</th>
+                    <th>Account ID</th>
+                </tr>
+                <!-- Data rows dynamically inserted here -->
+            </table>
+            <form action="your_php_file.php" method="POST">
+                <label for="transaction_number">Transaction Number</label>
+                <input type="text" name="transaction_number" required> <br>
+                <label for="transaction_type">Transaction Type</label>
+                <input type="text" name="transaction_type" required> <br>
+                <label for="transaction_amount">Transaction Amount</label>
+                <input type="text" name="transaction_amount" required> <br>
+                <label for="employee_id">Employee ID</label>
+                <input type="text" name="employee_id" required> <br>
+                <label for="client_id">Client ID</label>
+                <input type="text" name="client_id" required> <br>
+                <label for="account_id">Account ID</label>
+                <input type="text" name="account_id" required> <br>
+                <input type="submit" name="insert" value="Insert">
+                <input type="submit" name="update" value="Update">
+                <input type="submit" name="delete" value="Delete">
+            </form>
+        </div>
+
+        <!-- Client Table -->
+        <div>
+            <h2>Client Table</h2>
+            <table>
+                <tr>
+                    <th>Client ID</th>
+                    <th>Client Name</th>
+                    <th>Client Address</th>
+                    <th>Client Phone</th>
+                    <th>Client Email</th>
+                </tr>
+                <!-- Data rows dynamically inserted here -->
+            </table>
+            <form action="your_php_file.php" method="POST">
+                <label for="client_id">Client ID</label>
+                <input type="text" name="client_id" required> <br>
+                <label for="client_name">Client Name</label>
+                <input type="text" name="client_name" required> <br>
+                <label for="client_address">Client Address</label>
+                <input type="text" name="client_address" required> <br>
+                <label for="client_phone">Client Phone</label>
+                <input type="text" name="client_phone" required> <br>
+                <label for="client_email">Client Email</label>
+                <input type="text" name="client_email" required> <br>
+                <input type="submit" name="insert" value="Insert">
+                <input type="submit" name="update" value="Update">
+                <input type="submit" name="delete" value="Delete">
+            </form>
+        </div>
+
+        <!-- Records Table -->
+        <div>
+            <h2>Records Table</h2>
+            <table>
+                <tr>
+                    <th>Client ID</th>
+                    <th>Account ID</th>
+                </tr>
+                <!-- Data rows dynamically inserted here -->
+            </table>
+            <form action="your_php_file.php" method="POST">
+                <label for="client_id">Client ID</label>
+                <input type="text" name="client_id" required> <br>
+                <label for="account_id">Account ID</label>
+                <input type="text" name="account_id" required> <br>
+                <input type="submit" name="insert" value="Insert">
+                <input type="submit" name="update" value="Update">
+                <input type="submit" name="delete" value="Delete">
+            </form>
+        </div>
+
+        <!-- Account Table -->
+        <div>
+            <h2>Account Table</h2>
+            <table>
+                <tr>
+                    <th>Account ID</th>
+                    <th>Account Status</th>
+                    <th>Account Type</th>
+                </tr>
+                <!-- Data rows dynamically inserted here -->
+            </table>
+            <form action="your_php_file.php" method="POST">
+                <label for="account_id">Account ID</label>
+                <input type="text" name="account_id" required> <br>
+                <label for="account_status">Account Status</label>
+                <input type="text" name="account_status" required> <br>
+                <label for="account_type">Account Type</label>
+                <input type="text" name="account_type" required> <br>
+                <input type="submit" name="insert" value="Insert">
+                <input type="submit" name="update" value="Update">
+                <input type="submit" name="delete" value="Delete">
+            </form>
+        </div>
+
+        <!-- Credit Table -->
+        <div>
+            <h2>Credit Table</h2>
+            <table>
+                <tr>
+                    <th>Account ID</th>
+                    <th>Credit Limit</th>
+                    <th>Credit Score</th>
+                    <th>Credit Balance</th>
+                    <th>Credit Pin</th>
+                </tr>
+                <!-- Data rows dynamically inserted here -->
+            </table>
+            <form action="your_php_file.php" method="POST">
+                <label for="account_id">Account ID</label>
+                <input type="text" name="account_id" required> <br>
+                <label for="credit_limit">Credit Limit</label>
+                <input type="text" name="credit_limit" required> <br>
+                <label for="credit_score">Credit Score</label>
+                <input type="text" name="credit_score" required> <br>
+                <label for="credit_balance">Credit Balance</label>
+                <input type="text" name="credit_balance" required> <br>
+                <label for="credit_pin">Credit Pin</label>
+                <input type="text" name="credit_pin" required> <br>
+                <input type="submit" name="insert" value="Insert">
+                <input type="submit" name="update" value="Update">
+                <input type="submit" name="delete" value="Delete">
+            </form>
+        </div>
+
+        <!-- Savings Table -->
+        <div>
+            <h2>Savings Table</h2>
+            <table>
+                <tr>
+                    <th>Account ID</th>
+                    <th>Savings Balance</th>
+                    <th>Savings Rate</th>
+                    <th>Savings Pin</th>
+                </tr>
+                <!-- Data rows dynamically inserted here -->
+            </table>
+            <form action="your_php_file.php" method="POST">
+                <label for="account_id">Account ID</label>
+                <input type="text" name="account_id" required> <br>
+                <label for="savings_balance">Savings Balance</label>
+                <input type="text" name="savings_balance" required> <br>
+                <label for="savings_rate">Savings Rate</label>
+                <input type="text" name="savings_rate" required> <br>
+                <label for="savings_pin">Savings Pin</label>
+                <input type="text" name="savings_pin" required> <br>
+                <input type="submit" name="insert" value="Insert">
+                <input type="submit" name="update" value="Update">
+                <input type="submit" name="delete" value="Delete">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

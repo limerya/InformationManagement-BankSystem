@@ -70,6 +70,12 @@
         exit(); 
     }
 
+    $client_pin = $_REQUEST['client_pin'];
+    if(strlen($client_pin) != 6){
+        header('Location:http://localhost/banksystem/AdminView/error.html');
+        exit(); 
+    }
+
     if(isset($_POST['insert']))
     {
         $sqlcheck = "SELECT COUNT(1) AS checker FROM CLIENT WHERE CL_ID = '$cl_id'";

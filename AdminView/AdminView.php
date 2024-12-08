@@ -291,6 +291,7 @@
                         <td><?php echo $row4['CL_ADDRESS'] ?></td>
                         <td><?php echo $row4['CL_PHONE'] ?></td>
                         <td><?php echo $row4['CL_EMAIL'] ?></td>
+                        <td><?php echo $row4['CL_PIN'] ?></td>
                     </tr>
                     <?php
                         }
@@ -309,6 +310,8 @@
                     <input type="text" name="client_phone" class="inputbox" required> 
                     <label for="client_email">Client Email</label>
                     <input type="text" name="client_email" class="inputbox" required> 
+                    <label for="client_email">Client Pin</label>
+                    <input type="text" name="client_pin" class="inputbox" required> 
                 </div>
                 <input type="submit" name="insert" value="Insert">
                 <input type="submit" name="update" value="Update">

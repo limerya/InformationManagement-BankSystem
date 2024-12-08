@@ -1,8 +1,8 @@
 <?php
 $user = "root";
-$password = "2223Untalan";
+$password = "12345";
 $database = "BANK_SYSTEM";
-$servername = "localhost:3306";
+$servername = "localhost:3310";
 
 $mysqli = new mysqli($servername, $user, $password, $database);
 

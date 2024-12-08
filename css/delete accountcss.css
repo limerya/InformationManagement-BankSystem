@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+}
+.container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    display: inline-block;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.warning {
+    color: red;
+    font-weight: bold;
+}
+.btn {
+    margin: 10px 5px;
+    padding: 10px 20px;
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn-back {
+    background-color: #5bc0de;
+}
+.btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}

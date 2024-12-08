@@ -39,6 +39,11 @@
         padding-bottom: 5px;
       }
 
+      .label2 {
+        font-size: 13pt;
+        padding-bottom: 5px;
+      }
+
       input {
           font-size: 12pt;
           border-radius: 5px;
@@ -61,7 +66,7 @@
 
       .submit-btn {
         background-color: #3f413a;
-        color: #e2dfd9;
+        color: white;
       }
 
       .submit-btn:hover {
@@ -69,12 +74,12 @@
       }
 
       .back-btn {
-        background-color: #66695e;
+        background-color: #3f413a;
         color: white;
       }
 
       .back-btn:hover {
-        background-color: #52554a;
+        background-color: #595c50;
       }
 
       .options {
@@ -83,17 +88,31 @@
         gap: 10px;
         margin-top: 10px;
       }
+
+      .radio-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+      }
+      .radio-container label {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
     </style>
 </head>
+
 <body>
   <div class="container">
     <h1>Bank Sign-Up Form</h1>
-    <form action="#" method="post">
+    <form action="signup.php" method="post">
       <label for="username">Username</label>
       <input type="text" id="username" name="username" placeholder="Create Username" required>
 
       <label for="email">Email Address</label>
-      <input type="email" id="email" name="email" placeholder="Enter Email" required>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
       <label for="password">Password</label>
       <input type="password" id="password" name="password" placeholder="Create Password" required>
@@ -101,9 +120,17 @@
       <label for="confirm-password">Confirm Password</label>
       <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
 
+      <label for="number">Contact No.</label>
+      <input type="text" id="number" name="number" placeholder="Enter your contact number" required>
+
+      <div class="radio-container">
+        <label><input type="radio" name="accountType" value="savings" required> Savings</label>
+        <label><input type="radio" name="accountType" value="credit"> Credit</label>
+      </div>
+
       <div class="options">
         <button type="submit" class="submit-btn">Sign Up</button>
-        <button class="back-btn">Back to Login</button>
+        <button class="back-btn" type="button" onclick="window.location.href='login.php'">Back to Login</button>
       </div>
     </form>
   </div>

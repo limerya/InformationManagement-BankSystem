@@ -99,7 +99,89 @@
     }
 
     $client_id_input = $_REQUEST['client_id'];
+    $cl_id = $_REQUEST['client_code'];
+    if($cl_id < 10)
+    {
+        $cl_id = "000$cl_id";
+    }
+
+    elseif($cl_id >= 10 & $cl_id < 100)
+    {
+        $cl_id = "00$cl_id";
+    }
+
+    elseif($cl_id >= 100 & $cl_id < 1000)
+    {
+        $cl_id = "0$cl_id";
+    }
+
+    elseif($cl_id >= 1000 & $cl_id < 10000)
+    {
+        $cl_id = (string)$cl_id;
+    }
+
+    else
+    {
+        header('Location:http://localhost/banksystem/AdminView/error.html');
+        exit(); 
+    }
+
+    $sql = "SELECT IFNULL((SELECT CL_ID FROM CLIENT WHERE CL_ID = '$employee_id'), 'error') AS col1";
+    $query = $mysqli -> query($sql);
+    $result = $query -> fetch_assoc();
+
+    if($result['col1'] == 'error')
+    {
+        header('error.html');
+        exit();
+    }
+
     $account_id_input = $_REQUEST['account_id'];
+    if($account_id_input < 10)
+    { 
+        $account_id = "00000$account_id_input";
+    }
+
+    elseif($account_id_input >= 10 & $account_id_input < 100)
+    {
+        $account_id = "0000$account_id_input";
+    }
+
+    elseif($account_id_input >= 100 & $account_id_input < 1000)
+    {
+        $account_id = "000$account_id_input";
+    }
+
+    elseif($account_id_input >= 1000 & $account_id_input < 10000)
+    {
+        $account_id = "00$account_id_input";
+    }
+
+    elseif($account_id_input >= 10000 & $account_id_input < 100000)
+    {
+        $account_id = "0$account_id_input";
+    }
+
+    elseif($account_id_input >= 100000 & $account_id_input < 1000000)
+    {
+        $account_id = "$account_id_input";
+    }
+
+    else
+    {
+        header('Location:http://localhost/AdminView/error.html');
+        exit(); 
+    }
+
+    $sql = "SELECT IFNULL((SELECT ACC_ID FROM ACCOUNT WHERE ACC_ID = '$account_id'), 'error') AS col1";
+    $query = $mysqli -> query($sql);
+    $result = $query -> fetch_assoc();
+
+    if($result['col1'] == 'error')
+    {
+        header('error.html');
+        exit();
+    }
 
     if(isset($_POST['insert']))
     {

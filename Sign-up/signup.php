@@ -1,65 +1,121 @@
 <?php
-// Database connection
-// $host = 'localhost:3306';
-// $username = 'root';
-// $password = '2223Untalan';
-// $database = 'BANK_SYSTEM';
+$user = "root";
+$password = "2223Untalan";
+$database = "BANK_SYSTEM";
+$servername = "localhost:3306";
 
-// $conn = new mysqli($host, $username, $password, $database);
-// if ($conn->connect_error) {
-//     die("Connection failed: " . $conn->connect_error);
-// }
+$mysqli = new mysqli($servername, $user, $password, $database);
 
-// Function to check if CL_ID already exists
-// function is_cl_id_exists($cl_id, $conn) {
-//     $sql = "SELECT COUNT(*) FROM CLIENT WHERE CL_ID = '$cl_id'";
-//     $result = $conn->query($sql);
-//     $row = $result->fetch_row();
-//     return $row[0] > 0;
-// }
+if ($mysqli->connect_error) {
+    die('Connect Error(' . $mysqli->connect_errno . ')' . $mysqli->connect_error);
+}
 
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//     $username = $_POST['username'];
-//     $email = $_POST['email'];
-//     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-//     $contact = $_POST['number'];
-//     $acc_type = $_POST['accountType']; 
+# Generate new CL_ID
+$cur_code = '0001';
+$sql = "SELECT IFNULL((SELECT CL_ID FROM CLIENT ORDER BY CL_ID DESC LIMIT 1), 'Has') AS col1";
+$query = $mysqli->query($sql);
+$result = $query->fetch_assoc();
 
-//     // Generate unique CL_ID and ACC_ID
-//     do {
-//         $cl_id = 'CL_' . substr(bin2hex(random_bytes(2)), 0, 2); // 2-character random string after 'CL_'
-//     } while (is_cl_id_exists($cl_id, $conn));
+if ($result['col1'] != 'Has') {
+    $lastcode = "SELECT CL_ID FROM CLIENT ORDER BY CL_ID DESC LIMIT 1";
+    $lastquery = $mysqli->query($lastcode);
+    $lastresult = $lastquery->fetch_assoc();
 
-//     $acc_id = 'ACC_' . bin2hex(random_bytes()); // 8-character random string for ACC_ID
+    $cur_code = $lastresult['CL_ID'] + 1;
 
-//     $client_sql = "INSERT INTO CLIENT (CL_ID, CL_NAME, CL_ADDRESS, CL_PHONE, CL_EMAIL)
-//                    VALUES ('$cl_id', '$username', 'Default Address', '$contact', '$email')";
+    if ($cur_code < 10) {
+        $cur_code = "000$cur_code";
+    } elseif ($cur_code >= 10 && $cur_code < 100) {
+        $cur_code = "00$cur_code";
+    } elseif ($cur_code >= 100 && $cur_code < 1000) {
+        $cur_code = "0$cur_code";
+    } elseif ($cur_code >= 1000 && $cur_code < 10000) {
+        $cur_code = (string)$cur_code;
+    }
+}
 
-//     $account_sql = "INSERT INTO ACCOUNT (ACC_ID, ACC_STATUS, ACC_TYPE)
-//                     VALUES ('$acc_id', 'Active', '$acc_type')";
+# Generate new ACC_ID
+$acc_code = '000001';
+$sql2 = "SELECT IFNULL((SELECT ACC_ID FROM ACCOUNT ORDER BY ACC_ID DESC LIMIT 1), 'Has') AS col1";
+$query2 = $mysqli->query($sql2);
+$result2 = $query2->fetch_assoc();
 
-//     if ($acc_type == 'savings') {
-//         $account_details_sql = "INSERT INTO SAVINGS (ACC_ID, SAV_BAL, SAV_RATE, SAV_PIN)
-//                                 VALUES ('$acc_id', 0.00, 0.05, '123456')";
-//     } else if ($acc_type == 'credit') {
-//         $account_details_sql = "INSERT INTO CREDIT (ACC_ID, CRD_LIMIT, CRD_SCR, CRD_BALANCE, CRD_PIN)
-//                                 VALUES ('$acc_id', 10000.00, 700, 0.00, '123456')";
-//     }
+if ($result2['col1'] != 'Has') {
+    $lastcode1 = "SELECT ACC_ID FROM ACCOUNT ORDER BY ACC_ID DESC LIMIT 1";
+    $lastquery1 = $mysqli->query($lastcode1);
+    $lastresult1 = $lastquery1->fetch_assoc();
 
-//     $records_sql = "INSERT INTO RECORDS (CL_ID, ACC_ID)
-//                     VALUES ('$cl_id', '$acc_id')";
-                    
-//     if ($conn->query($client_sql) === TRUE &&
-//         $conn->query($account_sql) === TRUE &&
-//         $conn->query($account_details_sql) === TRUE &&
-//         $conn->query($records_sql) === TRUE) {
-//         echo "Registration successful!";
-//     } else {
-//         echo "Error: " . $conn->error;
-//     }
+    $acc_code = $lastresult1['ACC_ID'] + 1;
 
-//     // $conn->close();
-// }
+    if ($acc_code < 10) {
+        $acc_code = "0000$acc_code";
+    } elseif ($acc_code >= 10 && $acc_code < 100) {
+        $acc_code = "000$acc_code";
+    } elseif ($acc_code >= 100 && $acc_code < 1000) {
+        $acc_code = "00$acc_code";
+    } elseif ($acc_code >= 1000 && $acc_code < 10000) {
+        $acc_code = "0$acc_code";
+    } elseif ($acc_code >= 10000 && $acc_code < 100000) {
+        $acc_code = (string)$acc_code;
+    }
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $contact = $_POST['number'];
+    $acc_type = $_POST['accountType'];
+
+    // Need to create specialized error handling messages first
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        header("Location: error_email_format.html");
+        exit();
+    }
+
+    // Need to create specialized error handling messages first
+    $domain = substr(strrchr($email, "@"), 1);
+    if (!checkdnsrr($domain, "MX")) {
+        header("Location: error_email_domain.html");
+        exit();
+    }
+
+    // Need to create specialized error handling messages first
+    $regex1 = '/^\+63\d{10}$/';
+    if (preg_match($regex1, $contact) == 0) {
+        header("Location: error_phone_num.html");
+        exit();
+    }
+
+    $client_sql = "INSERT INTO CLIENT (CL_ID, CL_NAME, CL_ADDRESS, CL_PHONE, CL_EMAIL)
+                   VALUES ('$cur_code', '$username', 'Default Address', '$contact', '$email')";
+
+    $account_sql = "INSERT INTO ACCOUNT (ACC_ID, ACC_STATUS, ACC_TYPE)
+                    VALUES ('$acc_code', 'Active', '$acc_type')";
+
+    if ($acc_type == 'savings') {
+        $account_details_sql = "INSERT INTO SAVINGS (ACC_ID, SAV_BAL, SAV_RATE, SAV_PIN)
+                                VALUES ('$acc_code', 0.00, 0.05, '123456')";
+    } elseif ($acc_type == 'credit') {
+        $account_details_sql = "INSERT INTO CREDIT (ACC_ID, CRD_LIMIT, CRD_SCR, CRD_BALANCE, CRD_PIN)
+                                VALUES ('$acc_code', 10000.00, 700, 0.00, '123456')";
+    }
+
+    $records_sql = "INSERT INTO RECORDS (CL_ID, ACC_ID)
+                    VALUES ('$cur_code', '$acc_code')";
+
+    if ($mysqli->query($client_sql) === TRUE &&
+        $mysqli->query($account_sql) === TRUE &&
+        $mysqli->query($account_details_sql) === TRUE &&
+        $mysqli->query($records_sql) === TRUE) {
+        header("Location: success.php");
+        exit();
+    } else {
+        echo "Error: " . $mysqli->error;
+    }
+}
+
+$mysqli->close();
 ?>
 
 <!DOCTYPE html>
@@ -104,7 +160,7 @@
       }
 
       .label2 {
-        font-size: 13pt;
+        font-size: 10pt;
         padding-bottom: 5px;
       }
 
@@ -172,6 +228,11 @@
   <div class="container">
     <h1>Bank Sign-Up Form</h1>
     <form action="signup.php" method="post">
+
+      <label2> Client Code: <?php echo $cur_code?> <br>
+      <label2> Account Code: <?php echo $acc_code?> <br>
+      <br>
+
       <label for="username">Username</label>
       <input type="text" id="username" name="username" placeholder="Create Username" required>
 
@@ -184,7 +245,7 @@
       <label for="confirm-password">Confirm Password</label>
       <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
 
-      <label for="number">Contact No.</label>
+      <label for="number">Contact No. (+63)</label>
       <input type="text" id="number" name="number" placeholder="Enter your contact number" required>
 
       <div class="radio-container">

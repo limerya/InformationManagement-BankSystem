@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="refresh" content="5;url=signup.php">
+    <title>Invalid Phone Number Format</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        html {
+            display: grid;
+            min-height: 100%;
+            background-color: #e2dfd9;
+        }
+
+        body {
+            font-family: "Lato", sans-serif;
+            margin: auto;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            border-radius: 25px;
+            background-color: white;
+            box-shadow: 10px 10px 5px gray;
+            width: 400px;
+            margin: auto;
+        }
+
+        h1 {
+            font-size: 20pt;
+            color: red;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16pt;
+            color: #333;
+        }
+
+        .back-btn {
+            font-size: 12pt;
+            border-style: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            background-color: #3f413a;
+            color: white;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background-color: #595c50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Error: Invalid Phone Number Format</h1>
+        <p>Your phone number does not follow the valid Philippine format. Please use the correct format (+63 followed by 10 digits).</p>
+        <p>Redirecting you back to the signup page in 5 seconds...</p>
+        <button class="back-btn" onclick="window.location.href='signup.php'">Back to Sign Up</button>
+    </div>
+</body>
+</html>

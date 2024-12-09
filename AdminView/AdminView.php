@@ -12,18 +12,6 @@
         die('Connect Error('.$mysqli->connect_errno.')'.$mysqli->connect_error);
     }
 
-    $adminname = '0001';
-    $pass = '1234';
-
-    $inputname = $_REQUEST['uname'];
-    $inputpass = $_REQUEST['psw'];
-
-    if($adminname !== $inputname | $inputpass !== $pass)
-    {
-        header('Location:http://localhost/AdminView/error2.html');
-        exit();
-    }
-
     $query1 = 'SELECT * FROM BRANCH';
     $result1 = $mysqli -> query($query1);
 
@@ -398,10 +386,10 @@
                     <input type="text" name="account_status" class="inputbox" required>
 
                     <label for="account_type">Savings Account</label>
-                    <input type="radio" name="account_type" class="inputbox" required>
+                    <input type="radio" name="account_type" value="savings" class="inputbox" required>
 
                     <label for="account_type">Credit Account</label>
-                    <input type="radio" name="account_type" class="inputbox" required>
+                    <input type="radio" name="account_type" value="credit" valclass="inputbox" required>
                 </div>
 
                 <input type="submit" name="insert" value="Insert">

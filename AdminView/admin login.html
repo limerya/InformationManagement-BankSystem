@@ -36,6 +36,7 @@
           display: flex; 
           flex-direction: column; 
           width: 100%;
+          margin-bottom: 15px;
       }
 
       .textlabel
@@ -53,15 +54,6 @@
           padding-top: 5px;
           padding-bottom: 5px;
           padding-left: 10px;
-      }
-
-      .back
-      {
-        display: grid;
-        gap: 5px;
-        padding-top: 12px;
-        grid-template-columns: auto auto;
-        grid-auto-flow: row;
       }
 
       .action1
@@ -108,7 +100,7 @@
 <h2 style="text-align: center;">Admin Login</h2>
 <div class="container">
     <div class="upperdiv"> 
-      <form action="actions.php" method="post" class="form">
+      <form action="AdminView.php" method="post" class="form">
         <label class="textlabel" for="uname">
             <b>Identification Number</b>
         </label>
@@ -117,14 +109,16 @@
         <label for="psw" class="textlabel"><b>Password</b></label>
 
         <input class="inputbox" type="password" placeholder="Enter Password" name="psw" required>
+        
+        <input type="submit" style="width: 100%;" class="button1" value = 'Login'>
       </form>
-      <input type="submit" style="width: 100%;" class="button1" value = 'Login'>
+      
     </div>
 
-    <div class="back">
+    <div class="upperdiv">
       <!--Creating button for employee-->
-      <form action="employeelogin.php" method="POST">
-        <input type="submit" name="employeelogin" value = 'Employee Login' class="button2">
+      <form action="../Login.html" method="POST">
+        <input type="submit" name="employeelogin" value = 'Back' class="button2">
       </form>
     </div>
 </div>

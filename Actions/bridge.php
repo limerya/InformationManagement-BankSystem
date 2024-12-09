@@ -15,7 +15,7 @@
     $uname = $_REQUEST['uname'];
     $pass = $_REQUEST['psw'];
 
-    $existance = "SELECT IFNULL((SELECT * FROM ACCOUNT WHERE ACC_ID = '$uname'), 'DNE') AS col1";
+    $existance = "SELECT IFNULL((SELECT ACC_ID FROM ACCOUNT WHERE ACC_ID = '$uname'), 'DNE') AS col1";
     $existancequery = $mysqli -> query($existance);
     $existanceresult = $existancequery -> fetch_assoc();
 

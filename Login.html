@@ -108,7 +108,7 @@
 <h2 style="text-align: center;">Bank Login Form</h2>
 <div class="container">
     <div class="upperdiv"> 
-      <form action="Actions/credit page.php" method="post" class="form">
+      <form action="Actions/creditpage.php" method="post" class="form">
         <label class="textlabel" for="uname">
             <b>Account Identification Number</b>
         </label>
@@ -117,8 +117,9 @@
         <label for="psw" class="textlabel"><b>Password</b></label>
 
         <input class="inputbox" type="password" placeholder="Enter Password" name="psw" required>
+        <input type="submit" style="width: 100%;" class="button1" value = 'Login'>
       </form>
-      <input type="submit" style="width: 100%;" class="button1" value = 'Login'>
+      
     </div>
 
     <div style="margin-top: 10px;" >
@@ -129,7 +130,7 @@
 
     <div class="lowerdiv">
       <!--Creating button for employee-->
-      <form action="AdminView/admin login.php" method="POST">
+      <form action="AdminView/admin login.html" method="POST">
         <input type="submit" name="employeelogin" value = 'Employee Login' class="button2">
       </form>
 

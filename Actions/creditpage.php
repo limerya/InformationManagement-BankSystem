@@ -11,60 +11,9 @@
     {
         die('Connect Error('.$mysqli->connect_errno.')'.$mysqli->connect_error);
     }
-    #checking existance of client
-    $uname = $_REQUEST['uname'];
-    $psw = $_REQUEST['psw'];
-    $sql = "SELECT COUNT(*) AS COUNTS, ACC_ID, CL_ID FROM RECORDS WHERE CL_ID = '$uname'";
-    $query = $mysqli -> query($sql);
-    $result = $query -> fetch_assoc();
+    include 'bridge.php';
 
-    if($result['COUNTS'] == 0)
-    {
-        header('Location:error.html');
-        exit();
-    }
-
-    elseif($result['COUNTS'] == 1)
-    {   
-        $acidtemp = $result['ACC_ID'];
-        $sql1 = "SELECT ACC_TYPE FROM ACCOUNT WHERE ACC_ID = '$acidtemp'";
-        $query1 = $mysqli -> query($sql1);
-        $result1 = $query1 -> fetch_assoc();
-
-        if($resul1['ACC_TYPE'] == 'savings')
-        {   
-            header('savings.html');
-            exit();
-        }
-    }
-    
-    else
-    {
-        while($row = $result2 -> fetch_assoc())
-        {   
-            $rowID = $row['ACC_ID'];
-            $checker2 = "SELECT ACC_ID, ACC_TYPE FROM ACCOUNT WHERE ACC_ID = '$rowID'";
-            $querychecker2 = $mysqli -> query($checker2);
-            $resultchecker2 = $querychecker2 -> fetch_assoc();
-            if($resultchecker2['ACC_TYPE'] == 'credit')
-            {
-                $acc_id = $resultchecker2['ACC_ID'];
-                $acc_type = $resultchecker2['ACC_TYPE'];
-            }
-        }
-    }
-
-    $passchecker = "SELECT * FROM CLIENT WHERE CL_ID = '$uname'";
-    $passquery = $mysqli -> query($passchecker);
-    $pass_result = $pass_query -> fetch_assoc();
-
-    if($pass_result['CL_PIN'] != $psw)
-    {
-        header('Location:error.html');
-        exit();
-    }
-    
-    $origin = "SELECT * FROM CREDIT WHERE ACC_ID = '$acc_id'";
+    $origin = "SELECT * FROM CREDIT WHERE ACC_ID = '$uname'";
     $originquery = $mysqli -> query($origin);
     $resultquery = $originquery -> fetch_assoc();
 
@@ -111,7 +60,7 @@
             </tbody>
         </table>
         <div class="payment-form">
-            <form>
+            <form action="process.php" method="POST">
                 <label for="payment-amount">Enter Amount to Pay:</label>
                 <input type="number" id="payment-amount" name="payment_amount" min="0" step="0.01" required>
                 <button type="submit">Pay Now</button>

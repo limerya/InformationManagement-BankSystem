@@ -62,11 +62,10 @@
     }
 
     $employee_pin = $_REQUEST['employee_pin'];
-
-    if($employee_pin_input > 6 & $employee_pin_input < 6)
+    if (!ctype_digit($employee_pin) || strlen($employee_pin) !== 6) 
     {
-        header("error.html");
-        exit();
+    header('Location:http://localhost/AdminView/error.html');
+    exit();
     }
 
     $branch_code_input = $_REQUEST['branch_code'];

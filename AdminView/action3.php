@@ -99,25 +99,25 @@
     }
 
     $client_id_input = $_REQUEST['client_id'];
-    $cl_id = $_REQUEST['client_code'];
-    if($cl_id < 10)
+    $client_id = $_REQUEST['client_code'];
+    if($client_id < 10)
     {
-        $cl_id = "000$cl_id";
+        $client_id = "000$client_id";
     }
 
-    elseif($cl_id >= 10 & $cl_id < 100)
+    elseif($client_id >= 10 & $client_id < 100)
     {
-        $cl_id = "00$cl_id";
+        $client_id = "00$client_id";
     }
 
-    elseif($cl_id >= 100 & $cl_id < 1000)
+    elseif($client_id >= 100 & $client_id < 1000)
     {
-        $cl_id = "0$cl_id";
+        $client_id = "0$client_id";
     }
 
-    elseif($cl_id >= 1000 & $cl_id < 10000)
+    elseif($client_id >= 1000 & $client_id < 10000)
     {
-        $cl_id = (string)$cl_id;
+        $client_id = (string)$client_id;
     }
 
     else

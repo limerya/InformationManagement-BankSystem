@@ -13,25 +13,25 @@
         die('Connect Error('.$mysqli->connect_errno.')'.$mysqli->connect_error);
     }
 
-    $cl_id = $_REQUEST['client_code'];
-    if($cl_id < 10)
+    $client_id = $_REQUEST['client_code'];
+    if($client_id < 10)
     {
-        $cl_id = "000$cl_id";
+        $client_id = "000$client_id";
     }
 
-    elseif($cl_id >= 10 & $cl_id < 100)
+    elseif($client_id >= 10 & $client_id < 100)
     {
-        $cl_id = "00$cl_id";
+        $client_id = "00$client_id";
     }
 
-    elseif($cl_id >= 100 & $cl_id < 1000)
+    elseif($client_id >= 100 & $client_id < 1000)
     {
-        $cl_id = "0$cl_id";
+        $client_id = "0$client_id";
     }
 
-    elseif($cl_id >= 1000 & $cl_id < 10000)
+    elseif($client_id >= 1000 & $client_id < 10000)
     {
-        $cl_id = (string)$cl_id;
+        $client_id = (string)$client_id;
     }
 
     else
@@ -78,7 +78,7 @@
 
     if(isset($_POST['insert']))
     {
-        $sqlcheck = "SELECT COUNT(1) AS checker FROM CLIENT WHERE CL_ID = '$cl_id'";
+        $sqlcheck = "SELECT COUNT(1) AS checker FROM CLIENT WHERE CL_ID = '$client_id'";
         $checker = $mysqli -> query($sqlcheck);
         $rowchecker = $checker -> fetch_assoc();
 
@@ -88,7 +88,7 @@
             exit();
         }
 
-        $sql =  "INSERT INTO CLIENT (CL_ID, CL_NAME, CL_ADDRESS, CL_PHONE, CL_EMAIL) VALUES ('$cl_id', '$client_name', '$client_address', '$client_phone', '$client_email')";
+        $sql =  "INSERT INTO CLIENT (CL_ID, CL_NAME, CL_ADDRESS, CL_PHONE, CL_EMAIL) VALUES ('$client_id', '$client_name', '$client_address', '$client_phone', '$client_email')";
     
         if(mysqli_query($mysqli, $sql))
         {
@@ -104,7 +104,7 @@
 
     elseif(isset($_POST['update']))
     {
-        $origin = "SELECT * FROM BRANCH WHERE BRANCH_CODE = '$cl_id'";
+        $origin = "SELECT * FROM BRANCH WHERE BRANCH_CODE = '$client_id'";
         $result = $mysqli -> query($origin);
         $row = $result -> fetch_assoc();
 
@@ -128,7 +128,7 @@
             $client_email = $row['CL_EMAIL'];
         }
 
-        $sqlr = "UPDATE CLIENT SET CL_NAME = '$client_name', CL_ADDRESS = '$client_address', CL_PHONE = '$$client_phone', CL_EMAIL = '$client_email' WHERE CL_ID = '$cl_id'";
+        $sqlr = "UPDATE CLIENT SET CL_NAME = '$client_name', CL_ADDRESS = '$client_address', CL_PHONE = '$$client_phone', CL_EMAIL = '$client_email' WHERE CL_ID = '$client_id'";
 
         if (mysqli_query($mysqli, $sqlr))
         {
@@ -142,7 +142,7 @@
 
     elseif(isset($_POST['delete']))
     {
-        $sql = "DELETE FROM CLIENT WHERE CL_CODE = '$cl_id'";
+        $sql = "DELETE FROM CLIENT WHERE CL_ID = '$client_id'";
         if (mysqli_query($mysqli, $sql))
         {
             echo "Successfully Deleted record from Database!";

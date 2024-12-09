@@ -141,7 +141,7 @@
 <html>
     <head></head>
     <body>
-        <form action="admin login.html" method="GET">
+        <form action="AdminUI.php" method="GET">
             <input type="submit" name="back" value = "Back">
         </form>
     </body>

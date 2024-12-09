@@ -385,8 +385,11 @@
                     <label for="account_status">Account Status</label>
                     <input type="text" name="account_status" class="inputbox" required>
 
-                    <label for="account_type">Account Type</label>
-                    <input type="text" name="account_type" class="inputbox" required>
+                    <label for="account_type">Savings Account</label>
+                    <input type="radio" name="account_type" class="inputbox" required>
+
+                    <label for="account_type">Credit Account</label>
+                    <input type="radio" name="account_type" class="inputbox" required>
                 </div>
 
                 <input type="submit" name="insert" value="Insert">

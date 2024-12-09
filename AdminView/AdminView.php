@@ -495,5 +495,8 @@
             </form>
         </div>
     </div>
+    <form action="../Login.html" method="POST" style="text-align: center;">
+        <input type="submit" value="Back to Login">
+    </form>
 </body>
 </html>

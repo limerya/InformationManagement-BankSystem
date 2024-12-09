@@ -51,7 +51,13 @@
     }
 
     $account_type = $_REQUEST['account_type'];
-    if (trim($account_type) === '' || strlen($account_type) > 12) {
+    if($account_type == 'savings' | $account_type == 'credit')
+    {
+        $acount_type = $account_type;
+    }
+    
+    else
+    {
         header('Location:http://localhost/AdminView/error.html');
         exit();
     }
@@ -68,7 +74,7 @@
             exit();
         }
         
-        $sql =  "INSERT INTO ACCOUNT (ACC_ID, ACC_STATUS, ACC_TYPE) VALUES ('$account_id', '$account_status, $account_type')";
+        $sql =  "INSERT INTO ACCOUNT (ACC_ID, ACC_STATUS, ACC_TYPE) VALUES ('$account_id', '$account_status', '$account_type')";
         if(mysqli_query($mysqli, $sql))
         {
             echo "Data Stored in Database successfully";
@@ -135,8 +141,8 @@
 <html>
     <head></head>
     <body>
-        <form action="AdminView.php" method="POST">
-            <input type="submit" value = "Back">
+        <form action="admin login.html" method="GET">
+            <input type="submit" name="back" value = "Back">
         </form>
     </body>
 

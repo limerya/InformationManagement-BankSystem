@@ -398,10 +398,10 @@
                     <input type="text" name="account_status" class="inputbox" required>
 
                     <label for="account_type">Savings Account</label>
-                    <input type="radio" name="account_type" class="inputbox" required>
+                    <input type="radio" name="account_type" value="savings" class="inputbox" required>
 
                     <label for="account_type">Credit Account</label>
-                    <input type="radio" name="account_type" class="inputbox" required>
+                    <input type="radio" name="account_type" value="credit" valclass="inputbox" required>
                 </div>
 
                 <input type="submit" name="insert" value="Insert">

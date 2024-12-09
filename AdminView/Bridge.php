@@ -7,13 +7,13 @@
 
     if($adminname !== $inputname | $inputpass !== $pass)
     {
-        header('Location:http://localhost/AdminView/error2.html');
+        header('Location:http://localhost/Final/AdminView/error2.html');
         exit();
     }
 
     else
     {
-        header('Location:http://localhost/AdminView/AdminView.php');
+        header('Location:http://localhost/Final/AdminView/AdminView.php');
         exit();
     }
 

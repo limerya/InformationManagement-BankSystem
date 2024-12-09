@@ -1,6 +1,6 @@
 <?php
     $user = "root";
-    $password = "1234";
+    $password = "12345";
     $database = "BANK_SYSTEM";
     $servername = "localhost:3310";
 

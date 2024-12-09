@@ -112,6 +112,7 @@
     }
             
     $mysqli -> close();
+    
 ?>
 <!DOCTYPE html>
 <html>

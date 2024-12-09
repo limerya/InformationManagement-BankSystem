@@ -149,7 +149,7 @@ $mysqli->close();
 
       <div class="options">
         <button type="submit" class="submit-btn">Sign Up</button>
-        <button class="back-btn" type="button" onclick="window.location.href='login.html'">Back to Login</button>
+        <button class="back-btn" type="button" onclick="window.location.href='../Login.html'">Back to Login</button>
       </div>
     </form>
   </div>
